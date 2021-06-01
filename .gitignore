@@ -4,5 +4,8 @@ course-info
 .vscode/settings.json
 Udemy Course/testfile.ipynb
 
-#Igoring virtual environment folder and settings
+#Ignoring virtual environment folder and settings
 .env
+
+#Ignoring cache files
+*.pyc
