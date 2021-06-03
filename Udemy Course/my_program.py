@@ -1,3 +1,7 @@
+'''
+A Very Simple Script
+'''
+
 from my_main_package import main_script
 from my_main_package.subpackage import my_subscript
 
