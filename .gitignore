@@ -9,3 +9,5 @@ Udemy Course/testfile.ipynb
 
 #Ignoring cache files
 *.pyc
+
+/.vscode
