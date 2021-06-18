@@ -1,13 +1,13 @@
 #Ignore course Resources folder
 course-resources
+supplementary
+.vscode
+testfile.ipynb
 course-info
-.vscode/settings.json
-Udemy Course/testfile.ipynb
+
 
 #Ignoring virtual environment folder and settings
 .env
 
 #Ignoring cache files
 *.pyc
-
-/.vscode
