@@ -66,9 +66,6 @@ class Player():
     def add_cards(self, new_cards):
         self.all_cards.append(new_cards)
 
-    def stand():
-        pass
-
     def __string__(self):
         pass
 
@@ -109,8 +106,6 @@ while game_on:
 
         for i in range(0,len(dealer.all_cards)):
             dealer_score += dealer.all_cards[i].value
-
-
         if player_score == 21:
             print(f"{player.name} has Blackjack!")
         elif dealer_score == 21:
