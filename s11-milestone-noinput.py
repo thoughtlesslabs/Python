@@ -3,27 +3,6 @@ Blackjack Game Mileston Project
 Coded by Thoughtless Labs
 
 '''
-
-# Player - Track and use money and cards
-
-# Computer Dealer - Deal cards and play hand
-
-
-# Create players
-# Create a deck
-# Deal Cards
-# Check for win
-# Check for 21 then
-# Tell player cards
-# Decide on hit, stay
-# Dealer plays until bust or rules (must hit on soft 17, etc.)
-# End loop and restart
-
-# Basic logic
-# Game loop
-# Player loop
-# Dealer loop
-
 import random
 
 suits = ('Hearts','Diamonds','Spades','Clubs')
@@ -92,40 +71,42 @@ while game_on:
         player_score += player.all_cards[i].value
 
     for i in range(0,len(dealer.all_cards)):
-        dealer_score += dealer.all_cards[i].value 
+        dealer_score += dealer.all_cards[i].value
 
     if player_score == 21:
         print(f"{player.name} has Blackjack!")
-        break
-    elif player_score > 21:
-        print(f"{player.name} has BUSTED!")
-        player_score = 0
-        break
-    elif player_score >=17:
-        print(f"{player.name} stays with {player_score}")
-        break
-    else:
-        player.add_cards(game_deck.deal_one())
-        continue
-    
-    print(f"Dealer has {dealer_score}")
-    if dealer_score == 21:
+        game_on = False
+    elif dealer_score == 21:
         print(f"Dealer has Blackjack! {player.name} loses.")
-        break
-    elif dealer_score > 21:
-        print(f"Dealer has BUSTED!")
-        dealer_score = 0
-        break
-    elif dealer_score >=17:
-        print(f"Dealer stays with {dealer_score}")
-        break
-    else:
-        player.add_cards(game_deck.deal_one())
-        continue
+        game_on = False
+
+    player_turn = True
+    while player_turn:
+        if player_score > 21:
+            print(f"Player has BUSTED!")
+            break
+        elif player_score >=17:
+            print(f"{player.name} stays with a score of {player_score}")
+            break
+        else:
+            player.add_cards(game_deck.deal_one())
+            continue
+    
+    dealer_turn = True
+            
+    while dealer_turn:
+        print(f"Dealer has {dealer_score}")
+        if dealer_score > 21:
+            print(f"Dealer has BUSTED!")
+            break
+        elif dealer_score >=17:
+            print(f"Dealer stays with a score of {dealer_score}")
+            break
+        else:
+            player.add_cards(game_deck.deal_one())
+            continue
 
 if player_score > dealer_score:
     print(f"{player.name} wins")
 else:
     print(f"Dealer wins")
-
-game_on = False
