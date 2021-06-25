@@ -51,6 +51,9 @@ class Player():
 def count_score(player_hand):
     score = 0
     for i in range(0,len(player_hand.all_cards)):
+        if player_hand.all_cards[i].rank == 'Ace':
+            if (score + player_hand.all_cards[i].value) > 21:
+                player_hand.all_cards[i].value = 1
         score = score + player_hand.all_cards[i].value
     return score,player_hand
 
@@ -77,8 +80,10 @@ while game_on:
 
     if player_score[0] == 21:
         print(f"{player_score[1].name} has Blackjack!")
+        break
     elif dealer_score[0] == 21:
         print(f"{dealer_score[1].name} has Blackjack!")
+        break
 
     player_turn = True
 
@@ -87,18 +92,20 @@ while game_on:
         print(f"{player.name} has a score of {player_score[0]}")
         if player_score[0] > 21:
             print(f"{player.name} has BUSTED!")
+            dealer_turn = False
             break
         elif player_score[0] >=17:
             print(f"{player.name} stays with a score of {player_score[0]}")
+            dealer_turn = True
             break
         elif player_score[0] < 17:
             player.add_cards(game_deck.deal_one())
             print(f"{player.name} gets a {player.all_cards[-1]}")
             continue
         else:
+            dealer_turn = True
             break
-    
-    dealer_turn = True
+            
 
     while dealer_turn:
         dealer_score = count_score(dealer)
@@ -117,10 +124,14 @@ while game_on:
             break
     
     game_on=False
-'''
-if player_score < 22 or dealer_score < 22:
-    if player_score > dealer_score:
-        print(f"{player.name} wins")
-    else:
-     print(f"Dealer wins")
-     '''
+
+if player_score[0] > 21:
+    print("Dealer Wins")
+elif dealer_score[0] > 21:
+    print(f"{player.name} wins!")
+elif player_score[0] == dealer_score[0]:
+    print("It's a tie!")
+elif player_score[0] > dealer_score[0]:
+    print(f"{player.name} wins")
+else:
+    print(f"Dealer wins")
