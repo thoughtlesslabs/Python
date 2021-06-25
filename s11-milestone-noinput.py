@@ -48,8 +48,15 @@ class Player():
     def __string__(self):
         pass
 
+def count_score(player_hand):
+    score = 0
+    for i in range(0,len(player_hand.all_cards)):
+        score = score + player_hand.all_cards[i].value
+    return score,player_hand
+
+
 #create player and dealer
-player = Player(input('What is your name? '))
+player = Player('John')#input('What is your name? '))
 dealer = Player('Dealer')
 
 #create a new deck
@@ -60,53 +67,60 @@ game_deck.shuffle()
 
 game_on = True
 while game_on:
-    player_score = 0
-    dealer_score = 0
 
     for i in range(2):
         player.add_cards(game_deck.deal_one())
         dealer.add_cards(game_deck.deal_one())
 
-    for i in range(0,len(player.all_cards)):
-        player_score += player.all_cards[i].value
+    player_score = count_score(player)
+    dealer_score = count_score(dealer)
 
-    for i in range(0,len(dealer.all_cards)):
-        dealer_score += dealer.all_cards[i].value
-
-    if player_score == 21:
-        print(f"{player.name} has Blackjack!")
-        game_on = False
-    elif dealer_score == 21:
-        print(f"Dealer has Blackjack! {player.name} loses.")
-        game_on = False
+    if player_score[0] == 21:
+        print(f"{player_score[1].name} has Blackjack!")
+    elif dealer_score[0] == 21:
+        print(f"{dealer_score[1].name} has Blackjack!")
 
     player_turn = True
+
     while player_turn:
-        if player_score > 21:
-            print(f"Player has BUSTED!")
+        player_score = count_score(player)
+        print(f"{player.name} has a score of {player_score[0]}")
+        if player_score[0] > 21:
+            print(f"{player.name} has BUSTED!")
             break
-        elif player_score >=17:
-            print(f"{player.name} stays with a score of {player_score}")
+        elif player_score[0] >=17:
+            print(f"{player.name} stays with a score of {player_score[0]}")
             break
-        else:
+        elif player_score[0] < 17:
             player.add_cards(game_deck.deal_one())
+            print(f"{player.name} gets a {player.all_cards[-1]}")
             continue
+        else:
+            break
     
     dealer_turn = True
-            
+
     while dealer_turn:
-        print(f"Dealer has {dealer_score}")
-        if dealer_score > 21:
+        dealer_score = count_score(dealer)
+        print(f"{dealer.name} has a score of {dealer_score[0]}")
+        if dealer_score[0] > 21:
             print(f"Dealer has BUSTED!")
             break
-        elif dealer_score >=17:
-            print(f"Dealer stays with a score of {dealer_score}")
+        elif dealer_score[0] >=17:
+            print(f"Dealer stays with a score of {dealer_score[0]}")
             break
-        else:
-            player.add_cards(game_deck.deal_one())
+        elif dealer_score[0] < 17:
+            dealer.add_cards(game_deck.deal_one())
+            print(f"{dealer.name} gets a {dealer.all_cards[-1]}")
             continue
-
-if player_score > dealer_score:
-    print(f"{player.name} wins")
-else:
-    print(f"Dealer wins")
+        else:
+            break
+    
+    game_on=False
+'''
+if player_score < 22 or dealer_score < 22:
+    if player_score > dealer_score:
+        print(f"{player.name} wins")
+    else:
+     print(f"Dealer wins")
+     '''
