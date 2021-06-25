@@ -127,10 +127,10 @@ while game_on:
 if player_score[0] > 21:
     print("Dealer Wins")
 elif dealer_score[0] > 21:
-    print(f"{player.name} wins!")
+    print(f"{player.name} Wins!")
 elif player_score[0] == dealer_score[0]:
     print("It's a tie!")
 elif player_score[0] > dealer_score[0]:
-    print(f"{player.name} wins")
+    print(f"{player.name} Wins")
 else:
     print(f"Dealer wins")
