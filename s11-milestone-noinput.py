@@ -1,7 +1,6 @@
 '''
-Blackjack Game Mileston Project
+Blackjack Game Milestone Project
 Coded by Thoughtless Labs
-
 '''
 import random
 
