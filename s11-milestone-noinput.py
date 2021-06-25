@@ -58,7 +58,7 @@ def count_score(player_hand):
 
 
 #create player and dealer
-player = Player('John')#input('What is your name? '))
+player = Player(input('What is your name? '))
 dealer = Player('Dealer')
 
 #create a new deck
