@@ -11,3 +11,6 @@ course-info
 
 #Ignoring cache files
 *.pyc
+
+#Ignoring .DS_Store files
+.DS_Store
