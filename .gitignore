@@ -4,7 +4,8 @@ supplementary
 .vscode
 testfile.ipynb
 course-info
-
+zip
+unzip_me_for_instructions.zip
 
 #Ignoring virtual environment folder and settings
 .env
