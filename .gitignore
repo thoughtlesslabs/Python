@@ -6,6 +6,7 @@ testfile.ipynb
 course-info
 zip
 unzip_me_for_instructions.zip
+images
 
 #Ignoring virtual environment folder and settings
 .env
